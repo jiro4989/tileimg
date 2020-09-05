@@ -15,6 +15,8 @@ type drawParam struct {
 }
 
 func draw(dest *image.RGBA, p drawParam) {
+	drawBackground(dest, color.RGBA{255, 255, 255, 255})
+
 	gc := draw2dimg.NewGraphicContext(dest)
 
 	rp := rectParam{
@@ -40,4 +42,15 @@ func draw(dest *image.RGBA, p drawParam) {
 
 	gc.Close()
 	gc.FillStroke()
+}
+
+func drawBackground(dest *image.RGBA, c color.RGBA) {
+	bounds := dest.Bounds().Max
+	width := bounds.X
+	height := bounds.Y
+	for x := 0; x < width; x++ {
+		for y := 0; y < height; y++ {
+			dest.Set(x, y, c)
+		}
+	}
 }
