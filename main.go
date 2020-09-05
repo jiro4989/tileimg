@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"image"
+	"image/png"
 	"os"
 	"strconv"
 	"strings"
 
 	"github.com/docopt/docopt-go"
-	"github.com/llgcode/draw2d/draw2dimg"
 )
 
 type Config struct {
@@ -23,6 +23,7 @@ type Config struct {
 	StrokeColor     string   `docopt:"-s,--stroke-color"`
 	FillColor       string   `docopt:"-f,--fill-color"`
 	LineWidth       float64  `docopt:"-l,--line-width"`
+	OutFile         string   `docopt:"-o,--out"`
 	Args            []string `docopt:"<args>"`
 }
 
@@ -50,6 +51,7 @@ Options:
   -s, --stroke-color=<stroke-color>            image stroke color [default: black]
   -f, --fill-color=<fill-color>                image file color [default: none]
   -l, --line-width=<line-width>                image line width [default: 2]
+  -o, --out=<path>                             out file path
 
 `
 
@@ -60,7 +62,8 @@ func main() {
 func Main(args []string) int {
 	opts, err := docopt.ParseArgs(usage, args, version)
 	if err != nil {
-		panic(err)
+		fmt.Fprintln(os.Stderr, err)
+		return 1
 	}
 
 	var config Config
@@ -76,6 +79,19 @@ func Main(args []string) int {
 		return 0
 	}
 
+	var w *os.File
+	if config.OutFile == "" {
+		w = os.Stdout
+	} else {
+		var err error
+		w, err = os.Create(config.OutFile)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			return 2
+		}
+		defer w.Close()
+	}
+
 	dest := image.NewRGBA(image.Rect(0, 0, config.Width, config.Height))
 	drawBackground(dest, colors[config.BackgroundColor])
 
@@ -83,12 +99,14 @@ func Main(args []string) int {
 		fs := strings.Split(xy, ",")
 		x, err := strconv.Atoi(fs[0])
 		if err != nil {
-			panic(err)
+			fmt.Fprintln(os.Stderr, err)
+			return 3
 		}
 
 		y, err := strconv.Atoi(fs[1])
 		if err != nil {
-			panic(err)
+			fmt.Fprintln(os.Stderr, err)
+			return 4
 		}
 
 		dp := drawParam{
@@ -102,7 +120,12 @@ func Main(args []string) int {
 		}
 		draw(dest, dp)
 	}
-	draw2dimg.SaveToPngFile("out.png", dest)
+
+	err = png.Encode(w, dest)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		return 5
+	}
 
 	return 0
 }
