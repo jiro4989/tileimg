@@ -36,9 +36,9 @@ func draw(dest *image.RGBA, p drawParam) {
 
 	gc.BeginPath()
 	gc.MoveTo(float64(r.Min.X), float64(r.Min.Y))
-	gc.LineTo(float64(r.Max.X-r.Min.X), float64(r.Min.Y))
-	gc.LineTo(float64(r.Max.X-r.Min.X), float64(r.Max.Y-r.Min.Y))
-	gc.LineTo(float64(r.Min.X), float64(r.Max.Y-r.Min.Y))
+	gc.LineTo(float64(r.Max.X), float64(r.Min.Y))
+	gc.LineTo(float64(r.Max.X), float64(r.Max.Y))
+	gc.LineTo(float64(r.Min.X), float64(r.Max.Y))
 	gc.Close()
 	gc.FillStroke()
 }
