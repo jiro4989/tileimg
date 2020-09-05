@@ -15,8 +15,6 @@ type drawParam struct {
 }
 
 func draw(dest *image.RGBA, p drawParam) {
-	drawBackground(dest, color.RGBA{255, 255, 255, 255})
-
 	gc := draw2dimg.NewGraphicContext(dest)
 	bounds := dest.Bounds().Max
 	width := bounds.X
@@ -29,6 +27,7 @@ func draw(dest *image.RGBA, p drawParam) {
 		row:    p.row,
 		width:  width,
 		height: height,
+		pad:    p.pad,
 	}
 	r := rectangle(rp)
 
@@ -38,7 +37,7 @@ func draw(dest *image.RGBA, p drawParam) {
 	gc.BeginPath()
 	gc.MoveTo(float64(r.Min.X), float64(r.Min.Y))
 	gc.LineTo(float64(r.Max.X-r.Min.X), float64(r.Min.Y))
-	gc.LineTo(float64(r.Max.X), float64(r.Max.Y))
+	gc.LineTo(float64(r.Max.X-r.Min.X), float64(r.Max.Y-r.Min.Y))
 	gc.LineTo(float64(r.Min.X), float64(r.Max.Y-r.Min.Y))
 	gc.Close()
 	gc.FillStroke()
