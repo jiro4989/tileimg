@@ -16,6 +16,14 @@ func rectangle(p rectParam) rect {
 	col := p.width / p.column
 	row := p.height / p.row
 
+	if p.x < 0 {
+		p.x = 0
+	}
+
+	if p.y < 0 {
+		p.y = 0
+	}
+
 	if p.column-1 < p.x {
 		p.x = p.column - 1
 	}
