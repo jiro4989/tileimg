@@ -13,14 +13,12 @@ type rect struct {
 }
 
 func rectangle(p rectParam) rect {
-	var (
-		col = p.width / p.column
-		row = p.height / p.row
-		xx  = col * p.x
-		yy  = row * p.y
-		w   = col - p.pad*2
-		h   = row - p.pad*2
-	)
+	col := p.width / p.column
+	row := p.height / p.row
+	xx := col * p.x
+	yy := row * p.y
+	w := col - p.pad*2
+	h := row - p.pad*2
 
 	r := rect{
 		x:      xx + p.pad,
