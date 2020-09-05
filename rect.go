@@ -1,18 +1,14 @@
 package main
 
-func draw(width, height, column, row, pad int) {
-	// img := image.NewRGBA(image.Rect(0, 0, width, height))
-}
+import (
+	"image"
+)
 
 type rectParam struct {
 	x, y, column, row, width, height, pad int
 }
 
-type rect struct {
-	x, y, width, height int
-}
-
-func rectangle(p rectParam) rect {
+func rectangle(p rectParam) image.Rectangle {
 	col := p.width / p.column
 	row := p.height / p.row
 
@@ -32,16 +28,11 @@ func rectangle(p rectParam) rect {
 		p.y = p.row - 1
 	}
 
-	xx := col * p.x
-	yy := row * p.y
+	xx := col*p.x + p.pad
+	yy := row*p.y + p.pad
 	w := col - p.pad*2
 	h := row - p.pad*2
 
-	r := rect{
-		x:      xx + p.pad,
-		y:      yy + p.pad,
-		width:  w,
-		height: h,
-	}
+	r := image.Rect(xx, yy, xx+w, yy+h)
 	return r
 }

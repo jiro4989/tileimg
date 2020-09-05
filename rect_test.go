@@ -1,6 +1,7 @@
 package main
 
 import (
+	"image"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -10,7 +11,7 @@ func TestRectangle(t *testing.T) {
 	tests := []struct {
 		desc  string
 		param rectParam
-		want  rect
+		want  image.Rectangle
 	}{
 		{
 			desc: "normal: 0, 0",
@@ -23,12 +24,7 @@ func TestRectangle(t *testing.T) {
 				row:    2,
 				pad:    5,
 			},
-			want: rect{
-				x:      5,
-				y:      5,
-				width:  90,
-				height: 390,
-			},
+			want: image.Rect(5, 5, 95, 395),
 		},
 		{
 			desc: "normal: 1, 0",
@@ -41,12 +37,7 @@ func TestRectangle(t *testing.T) {
 				row:    2,
 				pad:    5,
 			},
-			want: rect{
-				x:      105,
-				y:      5,
-				width:  90,
-				height: 390,
-			},
+			want: image.Rect(105, 5, 195, 395),
 		},
 		{
 			desc: "normal: 0, 1",
@@ -59,12 +50,7 @@ func TestRectangle(t *testing.T) {
 				row:    2,
 				pad:    5,
 			},
-			want: rect{
-				x:      5,
-				y:      405,
-				width:  90,
-				height: 390,
-			},
+			want: image.Rect(5, 405, 95, 795),
 		},
 		{
 			desc: "normal: 1, 1",
@@ -77,12 +63,7 @@ func TestRectangle(t *testing.T) {
 				row:    2,
 				pad:    5,
 			},
-			want: rect{
-				x:      105,
-				y:      405,
-				width:  90,
-				height: 390,
-			},
+			want: image.Rect(105, 405, 195, 795),
 		},
 		{
 			desc: "normal: 3, 1",
@@ -95,12 +76,7 @@ func TestRectangle(t *testing.T) {
 				row:    2,
 				pad:    5,
 			},
-			want: rect{
-				x:      305,
-				y:      405,
-				width:  90,
-				height: 390,
-			},
+			want: image.Rect(305, 405, 395, 795),
 		},
 		{
 			desc: "illegal: 4, 2 (out of range)",
@@ -113,12 +89,7 @@ func TestRectangle(t *testing.T) {
 				row:    2,
 				pad:    5,
 			},
-			want: rect{
-				x:      305,
-				y:      405,
-				width:  90,
-				height: 390,
-			},
+			want: image.Rect(305, 405, 395, 795),
 		},
 		{
 			desc: "illegal: -1, -1 (out of range)",
@@ -131,12 +102,7 @@ func TestRectangle(t *testing.T) {
 				row:    2,
 				pad:    5,
 			},
-			want: rect{
-				x:      5,
-				y:      5,
-				width:  90,
-				height: 390,
-			},
+			want: image.Rect(5, 5, 95, 395),
 		},
 	}
 	for _, tt := range tests {
