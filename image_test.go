@@ -48,6 +48,24 @@ func TestMainNormal(t *testing.T) {
 				height: 390,
 			},
 		},
+		{
+			desc: "0, 1",
+			param: rectParam{
+				x:      0,
+				y:      1,
+				width:  400,
+				height: 800,
+				column: 4,
+				row:    2,
+				pad:    5,
+			},
+			want: rect{
+				x:      5,
+				y:      405,
+				width:  90,
+				height: 390,
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
