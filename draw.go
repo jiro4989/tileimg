@@ -18,28 +18,28 @@ func draw(dest *image.RGBA, p drawParam) {
 	drawBackground(dest, color.RGBA{255, 255, 255, 255})
 
 	gc := draw2dimg.NewGraphicContext(dest)
+	bounds := dest.Bounds().Max
+	width := bounds.X
+	height := bounds.Y
 
 	rp := rectParam{
 		x:      p.x,
 		y:      p.y,
 		column: p.column,
 		row:    p.row,
+		width:  width,
+		height: height,
 	}
 	r := rectangle(rp)
 
 	gc.SetStrokeColor(p.strokeColor)
 	gc.SetLineWidth(p.lineWidth)
 
-	// left top
+	gc.BeginPath()
 	gc.MoveTo(float64(r.Min.X), float64(r.Min.Y))
 	gc.LineTo(float64(r.Max.X-r.Min.X), float64(r.Min.Y))
+	gc.LineTo(float64(r.Max.X), float64(r.Max.Y))
 	gc.LineTo(float64(r.Min.X), float64(r.Max.Y-r.Min.Y))
-
-	// right bottom
-	gc.MoveTo(float64(r.Max.X), float64(r.Max.Y))
-	gc.LineTo(float64(r.Min.X-r.Max.X), float64(r.Max.Y))
-	gc.LineTo(float64(r.Max.X), float64(r.Min.Y-r.Max.Y))
-
 	gc.Close()
 	gc.FillStroke()
 }
