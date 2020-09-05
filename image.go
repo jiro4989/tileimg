@@ -15,6 +15,15 @@ type rect struct {
 func rectangle(p rectParam) rect {
 	col := p.width / p.column
 	row := p.height / p.row
+
+	if p.column-1 < p.x {
+		p.x = p.column - 1
+	}
+
+	if p.row-1 < p.y {
+		p.y = p.row - 1
+	}
+
 	xx := col * p.x
 	yy := row * p.y
 	w := col - p.pad*2
