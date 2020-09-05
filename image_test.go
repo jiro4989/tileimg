@@ -13,7 +13,7 @@ func TestMainNormal(t *testing.T) {
 		want  rect
 	}{
 		{
-			desc: "0, 0",
+			desc: "normal: 0, 0",
 			param: rectParam{
 				x:      0,
 				y:      0,
@@ -31,7 +31,7 @@ func TestMainNormal(t *testing.T) {
 			},
 		},
 		{
-			desc: "1, 0",
+			desc: "normal: 1, 0",
 			param: rectParam{
 				x:      1,
 				y:      0,
@@ -49,7 +49,7 @@ func TestMainNormal(t *testing.T) {
 			},
 		},
 		{
-			desc: "0, 1",
+			desc: "normal: 0, 1",
 			param: rectParam{
 				x:      0,
 				y:      1,
@@ -67,7 +67,7 @@ func TestMainNormal(t *testing.T) {
 			},
 		},
 		{
-			desc: "1, 1",
+			desc: "normal: 1, 1",
 			param: rectParam{
 				x:      1,
 				y:      1,
@@ -79,6 +79,24 @@ func TestMainNormal(t *testing.T) {
 			},
 			want: rect{
 				x:      105,
+				y:      405,
+				width:  90,
+				height: 390,
+			},
+		},
+		{
+			desc: "normal: 3, 1",
+			param: rectParam{
+				x:      3,
+				y:      1,
+				width:  400,
+				height: 800,
+				column: 4,
+				row:    2,
+				pad:    5,
+			},
+			want: rect{
+				x:      305,
 				y:      405,
 				width:  90,
 				height: 390,
