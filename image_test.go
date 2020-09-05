@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestMainNormal(t *testing.T) {
+func TestRectangle(t *testing.T) {
 	tests := []struct {
 		desc  string
 		param rectParam
