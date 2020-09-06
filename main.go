@@ -36,17 +36,17 @@ const (
 	exitCodeColorError
 )
 
-const version = `layoutimg v1.0.0
+const version = `tileimg v1.0.0
 Copyright (c) 2020 jiro4989
 Released under the MIT License.
-https://github.com/jiro4989/layoutimg`
+https://github.com/jiro4989/tileimg`
 
-const usage = `layoutimg is TODO
+const usage = `tileimg is TODO
 
 Usage:
-  layoutimg [options] <args>...
-  layoutimg -h | --help
-  layoutimg --version
+  tileimg [options] <args>...
+  tileimg -h | --help
+  tileimg --version
 
 Options:
   -h, --help                                   print this help

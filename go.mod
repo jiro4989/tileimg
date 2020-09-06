@@ -1,4 +1,4 @@
-module github.com/jiro4989/layoutimg
+module github.com/jiro4989/tileimg
 
 go 1.14
 

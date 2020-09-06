@@ -1,8 +1,8 @@
-= layoutimg
+= tileimg
 :toc: left
 :sectnums:
 
-image::https://codecov.io/gh/jiro4989/layoutimg/branch/master/graph/badge.svg[codecov, link="https://codecov.io/gh/jiro4989/layoutimg"]
+image::https://codecov.io/gh/jiro4989/tileimg/branch/master/graph/badge.svg[codecov, link="https://codecov.io/gh/jiro4989/tileimg"]
 
 == Development
 
