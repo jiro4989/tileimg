@@ -41,12 +41,51 @@ Copyright (c) 2020 jiro4989
 Released under the MIT License.
 https://github.com/jiro4989/tileimg`
 
-const usage = `tileimg is TODO
+const usage = `tileimg draws tile rectangle to image.
 
 Usage:
   tileimg [options] <args>...
   tileimg -h | --help
   tileimg --version
+
+Examples:
+  $ tileimg -o out.png 0,0 1,0 1,1
+
+  $ tileimg -o out.png 0-2,0 3,0-1
+
+  $ tileimg -o out.png -s none red:0,0 green:1,0 blue:2,0
+
+  $ tileimg -o out.png -s none 75,0,0:0,0-4 150,0,0:1,0-4 225,0,0:2,0-4
+
+Description:
+  <args> is a axis of tile rectangle. 1 args format is X,Y. Default tile column
+  of image is 4. and Default tile row of image is 4. If x is 1 and y is 2 then,
+  tileimg draws rectangle to:
+
+    +-----+-----+-----+-----+
+    | 0,0 | 1,0 | 2,0 | 3,0 |
+    +-----+-----+-----+-----+
+    | 0,1 |     | 2,1 | 3,1 |
+    +-----+-----+-----+-----+
+    | 0,2 | 1,2 | 2,2 | 3,2 |
+    +-----+-----+-----+-----+
+    | 0,3 | 1,3 | 2,3 | 3,3 |
+    +-----+-----+-----+-----+
+
+  tileimg joins multiple tile rectangles if <args> is 'BEGIN-END'
+  if x is 1-2 and y 0-3 then, tileimg draws rectangle to:
+
+    +-----+-----+-----+-----+
+    | 0,0 |           | 3,0 |
+    +-----+           +-----+
+    | 0,1 |           | 3,1 |
+    +-----+           +-----+
+    | 0,2 |           | 3,2 |
+    +-----+-----+-----+-----+
+    | 0,3 | 1,3 | 2,3 | 3,3 |
+    +-----+-----+-----+-----+
+
+  tleimg fills COLOR to rectangle if <args> is 'COLOR:x,y'.
 
 Options:
   -h, --help                                   print this help
@@ -61,7 +100,6 @@ Options:
   -f, --fill-color=<fill-color>                image file color [default: none]
   -l, --line-width=<line-width>                image line width [default: 2]
   -o, --out=<path>                             out file path
-
 `
 
 func main() {
