@@ -27,6 +27,11 @@ func TestMain(t *testing.T) {
 			args: []string{"-o", "out3.png", "0-2,0-2"},
 			want: exitCodeOK,
 		},
+		{
+			desc: "normal: padding",
+			args: []string{"-o", "out4.png", "-p", "0", "0,0", "1,0", "1,1", "0,1"},
+			want: exitCodeOK,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
