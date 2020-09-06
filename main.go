@@ -129,3 +129,40 @@ func Main(args []string) int {
 
 	return 0
 }
+
+func minMaxXY(s string) (x, y, x2, y2 int, err error) {
+	fs := strings.Split(s, ",")
+
+	x, x2, err = splitHyphen(fs[0])
+	if err != nil {
+		return
+	}
+
+	y, y2, err = splitHyphen(fs[1])
+	if err != nil {
+		return
+	}
+
+	return
+}
+
+func splitHyphen(s string) (a, b int, err error) {
+	if strings.Contains(s, "-") {
+		xs := strings.Split(s, "-")
+		a, err = strconv.Atoi(xs[0])
+		if err != nil {
+			return
+		}
+		b, err = strconv.Atoi(xs[1])
+		if err != nil {
+			return
+		}
+		return
+	}
+	a, err = strconv.Atoi(s)
+	if err != nil {
+		return
+	}
+	b = a
+	return
+}
