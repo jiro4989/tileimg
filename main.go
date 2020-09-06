@@ -33,6 +33,7 @@ const (
 	exitCodeOpenFileError
 	exitCodeRectangleError
 	exitCodeImageEncodeError
+	exitCodeColorError
 )
 
 const version = `layoutimg v1.0.0
@@ -101,7 +102,32 @@ func Main(args []string) int {
 		var xy string
 		if strings.Contains(arg, ":") {
 			f := strings.Split(arg, ":")
-			fillColor = colors[f[0]]
+			var ok bool
+			fillColor, ok = colors[f[0]]
+			if !ok {
+				cols := strings.Split(f[0], ",")
+
+				r, g, b := cols[0], cols[1], cols[2]
+				rr, err := strconv.ParseUint(r, 10, 8)
+				if err != nil {
+					fmt.Fprintln(os.Stderr, err)
+					return exitCodeColorError
+				}
+
+				gg, err := strconv.ParseUint(g, 10, 8)
+				if err != nil {
+					fmt.Fprintln(os.Stderr, err)
+					return exitCodeColorError
+				}
+
+				bb, err := strconv.ParseUint(b, 10, 8)
+				if err != nil {
+					fmt.Fprintln(os.Stderr, err)
+					return exitCodeColorError
+				}
+
+				fillColor = color.RGBA{uint8(rr), uint8(gg), uint8(bb), 255}
+			}
 			xy = f[1]
 		} else {
 			fillColor = colors[config.FillColor]
