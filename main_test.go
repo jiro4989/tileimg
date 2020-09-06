@@ -38,8 +38,13 @@ func TestMain(t *testing.T) {
 			want: exitCodeOK,
 		},
 		{
-			desc: "normal: simple rectangles",
+			desc: "normal: color pattern",
 			args: []string{"-o", "out6.png", "-s", "none", "black:0,0-4", "red:1,0-4", "green:2,0-4", "blue:3,0-4"},
+			want: exitCodeOK,
+		},
+		{
+			desc: "normal: color RGBA",
+			args: []string{"-o", "out6.png", "-s", "none", "0,0,0:0,0-4", "75,0,0:1,0-4", "150,0,0:2,0-4", "250,0,0:3,0-4"},
 			want: exitCodeOK,
 		},
 	}
