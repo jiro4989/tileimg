@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"image"
+	"image/color"
 	"image/png"
 	"os"
 	"strconv"
@@ -95,7 +96,17 @@ func Main(args []string) int {
 	width := bounds.X
 	height := bounds.Y
 
-	for _, xy := range config.Args {
+	for _, arg := range config.Args {
+		var fillColor color.RGBA
+		var xy string
+		if strings.Contains(arg, ":") {
+			f := strings.Split(arg, ":")
+			fillColor = colors[f[0]]
+			xy = f[1]
+		} else {
+			fillColor = colors[config.FillColor]
+			xy = arg
+		}
 		x, y, x2, y2, err := minMaxXY(xy)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
@@ -121,6 +132,7 @@ func Main(args []string) int {
 			min:         r,
 			max:         r2,
 			strokeColor: colors[config.StrokeColor],
+			fillColor:   fillColor,
 			lineWidth:   config.LineWidth,
 		}
 		draw(dest, dp)

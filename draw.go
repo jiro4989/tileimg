@@ -10,6 +10,7 @@ import (
 type drawParam struct {
 	min, max image.Rectangle
 
+	fillColor   color.RGBA
 	strokeColor color.RGBA
 	lineWidth   float64
 }
@@ -17,7 +18,7 @@ type drawParam struct {
 func draw(dest *image.RGBA, p drawParam) {
 	gc := draw2dimg.NewGraphicContext(dest)
 
-	gc.SetFillColor(color.RGBA{0, 0, 0, 0})
+	gc.SetFillColor(p.fillColor)
 	gc.SetStrokeColor(p.strokeColor)
 	gc.SetLineWidth(p.lineWidth)
 
