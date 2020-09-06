@@ -14,37 +14,37 @@ func TestMain(t *testing.T) {
 	}{
 		{
 			desc: "normal: simple rectangles",
-			args: []string{"-o", "out.png", "0,0", "1,0", "1,1"},
+			args: []string{"-o", "testdata/out.png", "0,0", "1,0", "1,1"},
 			want: exitCodeOK,
 		},
 		{
 			desc: "normal: multi area rectangles",
-			args: []string{"-o", "out2.png", "0-2,0", "0-2,1"},
+			args: []string{"-o", "testdata/out2.png", "0-2,0", "0-2,1"},
 			want: exitCodeOK,
 		},
 		{
 			desc: "normal: simple rectangles",
-			args: []string{"-o", "out3.png", "0-2,0-2"},
+			args: []string{"-o", "testdata/out3.png", "0-2,0-2"},
 			want: exitCodeOK,
 		},
 		{
 			desc: "normal: padding",
-			args: []string{"-o", "out4.png", "-p", "0", "0,0", "1,0", "1,1", "0,1"},
+			args: []string{"-o", "testdata/out4.png", "-p", "0", "0,0", "1,0", "1,1", "0,1"},
 			want: exitCodeOK,
 		},
 		{
 			desc: "normal: simple rectangles",
-			args: []string{"-o", "out5.png", "0-1,0", "0-1,1", "0,0-1", "1,0-1"},
+			args: []string{"-o", "testdata/out5.png", "0-1,0", "0-1,1", "0,0-1", "1,0-1"},
 			want: exitCodeOK,
 		},
 		{
 			desc: "normal: color pattern",
-			args: []string{"-o", "out6.png", "-s", "none", "black:0,0-4", "red:1,0-4", "green:2,0-4", "blue:3,0-4"},
+			args: []string{"-o", "testdata/out6.png", "-s", "none", "black:0,0-4", "red:1,0-4", "green:2,0-4", "blue:3,0-4"},
 			want: exitCodeOK,
 		},
 		{
 			desc: "normal: color RGBA",
-			args: []string{"-o", "out7.png", "-s", "none", "0,0,0:0,0-4", "75,0,0:1,0-4", "150,0,0:2,0-4", "250,0,0:3,0-4"},
+			args: []string{"-o", "testdata/out7.png", "-s", "none", "0,0,0:0,0-4", "75,0,0:1,0-4", "150,0,0:2,0-4", "250,0,0:3,0-4"},
 			want: exitCodeOK,
 		},
 	}
