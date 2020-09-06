@@ -10,12 +10,12 @@ import (
 func TestRectangle(t *testing.T) {
 	tests := []struct {
 		desc  string
-		param rectParam
+		param rectangleParam
 		want  image.Rectangle
 	}{
 		{
 			desc: "normal: 0, 0",
-			param: rectParam{
+			param: rectangleParam{
 				x:      0,
 				y:      0,
 				width:  400,
@@ -28,7 +28,7 @@ func TestRectangle(t *testing.T) {
 		},
 		{
 			desc: "normal: 1, 0",
-			param: rectParam{
+			param: rectangleParam{
 				x:      1,
 				y:      0,
 				width:  400,
@@ -41,7 +41,7 @@ func TestRectangle(t *testing.T) {
 		},
 		{
 			desc: "normal: 0, 1",
-			param: rectParam{
+			param: rectangleParam{
 				x:      0,
 				y:      1,
 				width:  400,
@@ -54,7 +54,7 @@ func TestRectangle(t *testing.T) {
 		},
 		{
 			desc: "normal: 1, 1",
-			param: rectParam{
+			param: rectangleParam{
 				x:      1,
 				y:      1,
 				width:  400,
@@ -67,7 +67,7 @@ func TestRectangle(t *testing.T) {
 		},
 		{
 			desc: "normal: 3, 1",
-			param: rectParam{
+			param: rectangleParam{
 				x:      3,
 				y:      1,
 				width:  400,
@@ -80,7 +80,7 @@ func TestRectangle(t *testing.T) {
 		},
 		{
 			desc: "illegal: 4, 2 (out of range)",
-			param: rectParam{
+			param: rectangleParam{
 				x:      4,
 				y:      2,
 				width:  400,
@@ -93,7 +93,7 @@ func TestRectangle(t *testing.T) {
 		},
 		{
 			desc: "illegal: -1, -1 (out of range)",
-			param: rectParam{
+			param: rectangleParam{
 				x:      -1,
 				y:      -1,
 				width:  400,

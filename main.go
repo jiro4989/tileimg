@@ -106,7 +106,7 @@ func Main(args []string) int {
 			return 3
 		}
 
-		rp := rectParam{
+		rp := rectangleParam{
 			x:      x,
 			y:      y,
 			column: config.Column,

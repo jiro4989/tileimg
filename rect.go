@@ -4,11 +4,11 @@ import (
 	"image"
 )
 
-type rectParam struct {
+type rectangleParam struct {
 	x, y, column, row, width, height, pad int
 }
 
-func rectangle(p rectParam) image.Rectangle {
+func rectangle(p rectangleParam) image.Rectangle {
 	col := p.width / p.column
 	row := p.height / p.row
 
