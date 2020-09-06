@@ -44,7 +44,7 @@ func TestMain(t *testing.T) {
 		},
 		{
 			desc: "normal: color RGBA",
-			args: []string{"-o", "out6.png", "-s", "none", "0,0,0:0,0-4", "75,0,0:1,0-4", "150,0,0:2,0-4", "250,0,0:3,0-4"},
+			args: []string{"-o", "out7.png", "-s", "none", "0,0,0:0,0-4", "75,0,0:1,0-4", "150,0,0:2,0-4", "250,0,0:3,0-4"},
 			want: exitCodeOK,
 		},
 	}
