@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"image"
 	"image/png"
@@ -131,6 +132,11 @@ func Main(args []string) int {
 }
 
 func minMaxXY(s string) (x, y, x2, y2 int, err error) {
+	if !strings.Contains(s, ",") {
+		err = errors.New("must need comma separated 2 values")
+		return
+	}
+
 	fs := strings.Split(s, ",")
 
 	x, x2, err = splitHyphen(fs[0])
