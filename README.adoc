@@ -2,7 +2,7 @@
 :toc: left
 :sectnums:
 
-image:: https://codecov.io/gh/jiro4989/layoutimg/branch/master/graph/badge.svg[codecov, target="https://codecov.io/gh/jiro4989/layoutimg"]
+image::https://codecov.io/gh/jiro4989/layoutimg/branch/master/graph/badge.svg[codecov, target="https://codecov.io/gh/jiro4989/layoutimg"]
 
 == Development
 
