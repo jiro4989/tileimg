@@ -1,0 +1,21 @@
+= layoutimg
+:toc: left
+:sectnums:
+
+https://codecov.io/gh/jiro4989/layoutimg/branch/master/graph/badge.svg[codecov, target="https://codecov.io/gh/jiro4989/layoutimg"]
+
+== Development
+
+=== Build
+
+[source,bash]
+----
+go build
+----
+
+=== Test
+
+[source,bash]
+----
+go test
+----
