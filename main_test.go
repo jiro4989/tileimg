@@ -6,6 +6,37 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestMain(t *testing.T) {
+	tests := []struct {
+		desc string
+		args []string
+		want int
+	}{
+		{
+			desc: "normal: simple rectangles",
+			args: []string{"-o", "out.png", "0,0", "1,0", "1,1"},
+			want: exitCodeOK,
+		},
+		{
+			desc: "normal: multi area rectangles",
+			args: []string{"-o", "out2.png", "0-2,0", "0-2,1"},
+			want: exitCodeOK,
+		},
+		{
+			desc: "normal: simple rectangles",
+			args: []string{"-o", "out3.png", "0-2,0-2"},
+			want: exitCodeOK,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.desc, func(t *testing.T) {
+			a := assert.New(t)
+			got := Main(tt.args)
+			a.Equal(tt.want, got)
+		})
+	}
+}
+
 func TestMinMaxXY(t *testing.T) {
 	tests := []struct {
 		desc    string

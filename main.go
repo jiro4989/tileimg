@@ -28,6 +28,14 @@ type Config struct {
 	Args            []string `docopt:"<args>"`
 }
 
+const (
+	exitCodeOK = iota
+	exitCodeArgsError
+	exitCodeOpenFileError
+	exitCodeRectangleError
+	exitCodeImageEncodeError
+)
+
 const version = `layoutimg v1.0.0
 Copyright (c) 2020 jiro4989
 Released under the MIT License.
@@ -64,7 +72,7 @@ func Main(args []string) int {
 	opts, err := docopt.ParseArgs(usage, args, version)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
-		return 1
+		return exitCodeArgsError
 	}
 
 	var config Config
@@ -72,12 +80,12 @@ func Main(args []string) int {
 
 	if config.Help {
 		fmt.Println(usage)
-		return 0
+		return exitCodeOK
 	}
 
 	if config.Version {
 		fmt.Println(version)
-		return 0
+		return exitCodeOK
 	}
 
 	var w *os.File
@@ -88,7 +96,7 @@ func Main(args []string) int {
 		w, err = os.Create(config.OutFile)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
-			return 2
+			return exitCodeOpenFileError
 		}
 		defer w.Close()
 	}
@@ -103,7 +111,7 @@ func Main(args []string) int {
 		x, y, x2, y2, err := minMaxXY(xy)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
-			return 3
+			return exitCodeRectangleError
 		}
 
 		rp := rectangleParam{
@@ -133,10 +141,10 @@ func Main(args []string) int {
 	err = png.Encode(w, dest)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
-		return 5
+		return exitCodeImageEncodeError
 	}
 
-	return 0
+	return exitCodeOK
 }
 
 func minMaxXY(s string) (x, y, x2, y2 int, err error) {
