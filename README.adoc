@@ -45,65 +45,68 @@ $ go get -u github.com/jiro4989/tileimg
 
 == Help
 
- tileimg draws tile rectangle to image.
- 
- Usage:
-   tileimg [options] <args>...
-   tileimg -h | --help
-   tileimg --version
- 
- Examples:
-   $ tileimg -o out.png 0,0 1,0 1,1
- 
-   $ tileimg -o out.png 0-2,0 3,0-1
- 
-   $ tileimg -o out.png -s none red:0,0 green:1,0 blue:2,0
- 
-   $ tileimg -o out.png -s none 75,0,0:0,0-4 150,0,0:1,0-4 225,0,0:2,0-4
- 
- Description:
-   <args> is a axis of tile rectangle. 1 args format is X,Y. Default tile column
-   of image is 4. and Default tile row of image is 4. If x is 1 and y is 2 then,
-   tileimg draws rectangle to:
- 
-     +-----+-----+-----+-----+
-     | 0,0 | 1,0 | 2,0 | 3,0 |
-     +-----+-----+-----+-----+
-     | 0,1 |     | 2,1 | 3,1 |
-     +-----+-----+-----+-----+
-     | 0,2 | 1,2 | 2,2 | 3,2 |
-     +-----+-----+-----+-----+
-     | 0,3 | 1,3 | 2,3 | 3,3 |
-     +-----+-----+-----+-----+
- 
-   tileimg joins multiple tile rectangles if <args> is 'BEGIN-END'
-   if x is 1-2 and y 0-3 then, tileimg draws rectangle to:
- 
-     +-----+-----+-----+-----+
-     | 0,0 |           | 3,0 |
-     +-----+           +-----+
-     | 0,1 |           | 3,1 |
-     +-----+           +-----+
-     | 0,2 |           | 3,2 |
-     +-----+-----+-----+-----+
-     | 0,3 | 1,3 | 2,3 | 3,3 |
-     +-----+-----+-----+-----+
- 
-   tleimg fills COLOR to rectangle if <args> is 'COLOR:x,y'.
+[source,text]
+----
+tileimg draws tile rectangle to image.
 
- Options:
-   -h, --help                                   print this help
-       --version                                print version
-   -W, --width=<width>                          image rectangle width [default: 200]
-   -H, --height=<height>                        image rectangle height [default: 200]
-   -c, --column=<column>                        image tile columns count [default: 4]
-   -r, --row=<row>                              image tile rows count [default: 4]
-   -p, --pad=<pad>                              image tile padding width [default: 5]
-   -b, --background-color=<background-color>    image background color [default: white]
-   -s, --stroke-color=<stroke-color>            image stroke color [default: black]
-   -f, --fill-color=<fill-color>                image file color [default: none]
-   -l, --line-width=<line-width>                image line width [default: 2]
-   -o, --out=<path>                             out file path
+Usage:
+  tileimg [options] <args>...
+  tileimg -h | --help
+  tileimg --version
+
+Examples:
+  $ tileimg -o out.png 0,0 1,0 1,1
+
+  $ tileimg -o out.png 0-2,0 3,0-1
+
+  $ tileimg -o out.png -s none red:0,0 green:1,0 blue:2,0
+
+  $ tileimg -o out.png -s none 75,0,0:0,0-4 150,0,0:1,0-4 225,0,0:2,0-4
+
+Description:
+  <args> is a axis of tile rectangle. 1 args format is X,Y. Default tile column
+  of image is 4. and Default tile row of image is 4. If x is 1 and y is 2 then,
+  tileimg draws rectangle to:
+
+    +-----+-----+-----+-----+
+    | 0,0 | 1,0 | 2,0 | 3,0 |
+    +-----+-----+-----+-----+
+    | 0,1 |     | 2,1 | 3,1 |
+    +-----+-----+-----+-----+
+    | 0,2 | 1,2 | 2,2 | 3,2 |
+    +-----+-----+-----+-----+
+    | 0,3 | 1,3 | 2,3 | 3,3 |
+    +-----+-----+-----+-----+
+
+  tileimg joins multiple tile rectangles if <args> is 'BEGIN-END'
+  if x is 1-2 and y 0-3 then, tileimg draws rectangle to:
+
+    +-----+-----+-----+-----+
+    | 0,0 |           | 3,0 |
+    +-----+           +-----+
+    | 0,1 |           | 3,1 |
+    +-----+           +-----+
+    | 0,2 |           | 3,2 |
+    +-----+-----+-----+-----+
+    | 0,3 | 1,3 | 2,3 | 3,3 |
+    +-----+-----+-----+-----+
+
+  tleimg fills COLOR to rectangle if <args> is 'COLOR:x,y'.
+
+Options:
+  -h, --help                                   print this help
+      --version                                print version
+  -W, --width=<width>                          image rectangle width [default: 200]
+  -H, --height=<height>                        image rectangle height [default: 200]
+  -c, --column=<column>                        image tile columns count [default: 4]
+  -r, --row=<row>                              image tile rows count [default: 4]
+  -p, --pad=<pad>                              image tile padding width [default: 5]
+  -b, --background-color=<background-color>    image background color [default: white]
+  -s, --stroke-color=<stroke-color>            image stroke color [default: black]
+  -f, --fill-color=<fill-color>                image file color [default: none]
+  -l, --line-width=<line-width>                image line width [default: 2]
+  -o, --out=<path>                             out file path
+----
 
 == LICENSE
 
