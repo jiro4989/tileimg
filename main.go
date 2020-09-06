@@ -13,8 +13,6 @@ import (
 )
 
 type Config struct {
-	Help            bool     `docopt:"-h,--help"`
-	Version         bool     `docopt:"--version"`
 	Width           int      `docopt:"-W,--width"`
 	Height          int      `docopt:"-H,--height"`
 	Column          int      `docopt:"-c,--column"`
@@ -77,16 +75,6 @@ func Main(args []string) int {
 
 	var config Config
 	opts.Bind(&config)
-
-	if config.Help {
-		fmt.Println(usage)
-		return exitCodeOK
-	}
-
-	if config.Version {
-		fmt.Println(version)
-		return exitCodeOK
-	}
 
 	var w *os.File
 	if config.OutFile == "" {
