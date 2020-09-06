@@ -32,6 +32,11 @@ func TestMain(t *testing.T) {
 			args: []string{"-o", "out4.png", "-p", "0", "0,0", "1,0", "1,1", "0,1"},
 			want: exitCodeOK,
 		},
+		{
+			desc: "normal: simple rectangles",
+			args: []string{"-o", "out5.png", "0-1,0", "0-1,1", "0,0-1", "1,0-1"},
+			want: exitCodeOK,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.desc, func(t *testing.T) {
