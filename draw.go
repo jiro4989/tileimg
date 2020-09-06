@@ -17,6 +17,7 @@ type drawParam struct {
 func draw(dest *image.RGBA, p drawParam) {
 	gc := draw2dimg.NewGraphicContext(dest)
 
+	gc.SetFillColor(color.RGBA{0, 0, 0, 0})
 	gc.SetStrokeColor(p.strokeColor)
 	gc.SetLineWidth(p.lineWidth)
 
