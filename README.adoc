@@ -2,6 +2,7 @@
 :toc: left
 :sectnums:
 
+image::https://github.com/jiro4989/tileimg/workflows/test/badge.svg[test]
 image::https://codecov.io/gh/jiro4989/tileimg/branch/master/graph/badge.svg[codecov, link="https://codecov.io/gh/jiro4989/tileimg"]
 
 tileimg draws tile rectangle to image.
