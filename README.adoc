@@ -4,6 +4,38 @@
 
 image::https://codecov.io/gh/jiro4989/tileimg/branch/master/graph/badge.svg[codecov, link="https://codecov.io/gh/jiro4989/tileimg"]
 
+tileimg draws tile rectangle to image.
+
+== Usage
+
+[source,bash]
+----
+tileimg -o out.png 0,0 1,0 1,1
+----
+
+image::https://user-images.githubusercontent.com/13825004/92319924-69245b00-f058-11ea-833a-97b77aaae220.png[out.png]
+
+[source,bash]
+----
+$ tileimg -o out.png 0-2,0 3,0-1
+----
+
+image::https://user-images.githubusercontent.com/13825004/92319932-848f6600-f058-11ea-8e60-661d79ba24b3.png[out.png]
+
+[source,bash]
+----
+$ tileimg -o out.png -s none red:0,0 green:1,0 blue:2,0
+----
+
+image::https://user-images.githubusercontent.com/13825004/92319948-9cff8080-f058-11ea-8dc0-12bc74b2e2ba.png[out.png]
+
+[source,bash]
+----
+$ tileimg -o out.png -s none 75,0,0:0,0-4 150,0,0:1,0-4 225,0,0:2,0-4
+----
+
+image::https://user-images.githubusercontent.com/13825004/92319962-b6083180-f058-11ea-8d15-023a436c26a8.png[out.png]
+
 == Development
 
 === Build
