@@ -95,27 +95,35 @@ func Main(args []string) int {
 
 	dest := image.NewRGBA(image.Rect(0, 0, config.Width, config.Height))
 	drawBackground(dest, colors[config.BackgroundColor])
+	bounds := dest.Bounds().Max
+	width := bounds.X
+	height := bounds.Y
 
 	for _, xy := range config.Args {
-		fs := strings.Split(xy, ",")
-		x, err := strconv.Atoi(fs[0])
+		x, y, x2, y2, err := minMaxXY(xy)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			return 3
 		}
 
-		y, err := strconv.Atoi(fs[1])
-		if err != nil {
-			fmt.Fprintln(os.Stderr, err)
-			return 4
+		rp := rectParam{
+			x:      x,
+			y:      y,
+			column: config.Column,
+			row:    config.Row,
+			width:  width,
+			height: height,
+			pad:    config.Pad,
 		}
+		r := rectangle(rp)
+
+		rp.x = x2
+		rp.y = y2
+		r2 := rectangle(rp)
 
 		dp := drawParam{
-			x:           x,
-			y:           y,
-			column:      config.Column,
-			row:         config.Row,
-			pad:         config.Pad,
+			min:         r,
+			max:         r2,
 			strokeColor: colors[config.StrokeColor],
 			lineWidth:   config.LineWidth,
 		}
